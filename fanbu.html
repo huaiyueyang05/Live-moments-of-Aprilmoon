@@ -5,19 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>26.5.29 帆布小镇 - 现场照片</title>
     <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        .back { display: inline-block; margin-bottom: 20px; color: #666; text-decoration: none; }
-        .photos img { max-width: 100%; height: auto; margin-bottom: 15px; border-radius: 8px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #e5e5e5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        .nav-back {
+            display: inline-block;
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding: 6px 12px;
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .nav-back:hover {
+            color: #fff;
+            background-color: #252525;
+        }
+
+        .header-info {
+            margin-bottom: 24px;
+        }
+
+        .header-info h1 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .header-info .date {
+            font-size: 14px;
+            color: #ff2442;
+            font-family: monospace;
+        }
+
+        /* 纯 CSS 双列瀑布流 */
+        .waterfall {
+            column-count: 2;
+            column-gap: 10px;
+        }
+
+        .waterfall-item {
+            break-inside: avoid;
+            margin-bottom: 10px;
+        }
+
+        .waterfall-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background-color: #1a1a1a;
+        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back">← 返回时间轴</a>
-    <h1>26.5.29 帆布小镇</h1>
 
-    <div class="photos">
-        <!-- 替换为你上传到 GitHub 仓库里的图片文件名 -->
-        <img src="fanbu_01.jpg" alt="帆布小镇现场 photo 1">
-        <img src="fanbu_02.jpg" alt="帆布小镇现场 photo 2">
+    <a href="index.html" class="nav-back">← 返回时间轴</a>
+
+    <div class="header-info">
+        <h1>帆布小镇</h1>
+        <span class="date">2026.05.29</span>
     </div>
+
+    <!-- 瀑布流容器 -->
+    <div class="waterfall">
+        <div class="waterfall-item"><img src="fb1.jpg" alt="现场照片1"></div>
+        <div class="waterfall-item"><img src="fb2.jpg" alt="现场照片2"></div>
+        <div class="waterfall-item"><img src="fb3.jpg" alt="现场照片3"></div>
+        <div class="waterfall-item"><img src="fb4.jpg" alt="现场照片4"></div>
+        <div class="waterfall-item"><img src="fb5.jpg" alt="现场照片5"></div>
+        <div class="waterfall-item"><img src="fb6.jpg" alt="现场照片6"></div>
+    </div>
+
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>26.5.29 帆布小镇 - 现场照片</title>
+    <title>26.5.29 帆布小镇 - Portfolio of Aprilmoon</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,30 +15,36 @@
             background-color: #0d0d0d;
             color: #e5e5e5;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px 16px;
         }
 
+        /* 返回按钮 */
         .nav-back {
             display: inline-block;
-            color: #888;
+            color: #aaa;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 20px;
-            padding: 6px 12px;
-            background-color: #1a1a1a;
+            padding: 6px 14px;
+            background-color: #181818;
             border-radius: 20px;
             border: 1px solid #2a2a2a;
+            transition: all 0.2s ease;
         }
 
         .nav-back:hover {
             color: #fff;
             background-color: #252525;
+            border-color: #444;
         }
 
+        /* 顶部标题栏 */
         .header-info {
             margin-bottom: 24px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 16px;
         }
 
         .header-info h1 {
@@ -53,23 +59,42 @@
             font-family: monospace;
         }
 
-        /* 纯 CSS 双列瀑布流 */
-        .waterfall {
+        /* ------------------------------------
+           自适应瀑布流核心代码（支持横图与竖图）
+        ------------------------------------ */
+        .photo-waterfall {
+            /* 手机默认显示 2 列 */
             column-count: 2;
-            column-gap: 10px;
-        }
-
-        .waterfall-item {
-            break-inside: avoid;
-            margin-bottom: 10px;
-        }
-
-        .waterfall-item img {
+            column-gap: 12px;
             width: 100%;
-            height: auto;
+        }
+
+        /* 电脑/大屏设备自动变成 3 列 */
+        @media (min-width: 768px) {
+            .photo-waterfall {
+                column-count: 3;
+                column-gap: 16px;
+            }
+        }
+
+        .photo-item {
+            /* 防止图片在跨列时被截断 */
+            break-inside: avoid;
+            margin-bottom: 12px;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: auto; /* 保持图片原始比例，横竖图自适应 */
             display: block;
             border-radius: 8px;
             background-color: #1a1a1a;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .photo-item img:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
         }
     </style>
 </head>
@@ -82,14 +107,14 @@
         <span class="date">2026.05.29</span>
     </div>
 
-    <!-- 瀑布流容器 -->
-    <div class="waterfall">
-        <div class="waterfall-item"><img src="fb1.jpg" alt="现场照片1"></div>
-        <div class="waterfall-item"><img src="fb2.jpg" alt="现场照片2"></div>
-        <div class="waterfall-item"><img src="fb3.jpg" alt="现场照片3"></div>
-        <div class="waterfall-item"><img src="fb4.jpg" alt="现场照片4"></div>
-        <div class="waterfall-item"><img src="fb5.jpg" alt="现场照片5"></div>
-        <div class="waterfall-item"><img src="fb6.jpg" alt="现场照片6"></div>
+    <!-- 瀑布流容器：直接按顺序放入横图或竖图即可 -->
+    <div class="photo-waterfall">
+        <div class="photo-item"><img src="img/full_fb1.jpg" alt="现场照片1"></div>
+        <div class="photo-item"><img src="img/full_fb2.jpg" alt="现场照片2"></div>
+        <div class="photo-item"><img src="img/full_fb3.jpg" alt="现场照片3"></div>
+        <div class="photo-item"><img src="img/full_fb4.jpg" alt="现场照片4"></div>
+        <div class="photo-item"><img src="img/full_fb5.jpg" alt="现场照片5"></div>
+        <div class="photo-item"><img src="img/full_fb6.jpg" alt="现场照片6"></div>
     </div>
 
 </body>

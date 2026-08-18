@@ -3,37 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>西宁作品集 - 时间轴</title>
+    <title>live又滚了 - 演出时间轴</title>
     <style>
-        /* 黑色背景与基础样式 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            max-width: 600px;
+            background-color: #0d0d0d;
+            color: #e5e5e5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px 15px;
+            padding: 24px 16px;
+        }
+
+        header {
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #222;
         }
 
         h1 {
-            font-size: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 12px;
+            font-size: 22px;
+            font-weight: 700;
             color: #fff;
+            letter-spacing: 0.5px;
         }
 
-        /* 时间轴整体容器 */
+        .subtitle {
+            font-size: 13px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* 时间轴线 */
         .timeline {
             position: relative;
             padding-left: 20px;
-            border-left: 2px solid #333;
-            margin-top: 20px;
+            border-left: 2px solid #262626;
         }
 
-        /* 单个时间轴节点 */
         .event-card {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 36px;
+        }
+
+        /* 时间轴红点 */
+        .event-card::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ff2442;
+            box-shadow: 0 0 8px rgba(255, 36, 66, 0.6);
+        }
+
+        .event-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .event-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ff2442;
+            font-family: monospace;
+        }
+
+        .event-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* 预览照片与页面同宽的三列流式网格 */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 6px;
+            background-color: #1a1a1a;
+            display: block;
+            transition: opacity 0.2s ease;
+        }
+
+        .photo-grid img:hover {
+            opacity: 0.85;
+        }
+
+        /* More 按钮 */
+        .more-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #181818;
+            color: #aaa;
+            font-size: 13px;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #2a2a2a;
+            transition: all 0.2s ease;
+        }
+
+        .more-btn:hover {
+            background-color: #252525;
+            color: #fff;
+            border-color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>live又滚了</h1>
+        <p class="subtitle">一些livehouse现场记录</p>
+    </header>
+
+    <div class="timeline">
+
+        <!-- 节点示例 1 -->
+        <div class="event-card">
+            <div class="event-header">
+                <span class="event-date">26.5.29</span>
+                <span class="event-title">帆布小镇</span>
+            </div>
+            
+            <div class="photo-grid">
+                <img src="fb1.jpg" alt="1">
+                <img src="fb2.jpg" alt="2">
+                <img src="fb3.jpg" alt="3">
+                <img src="fb4.jpg" alt="4">
+                <img src="fb5.jpg" alt="5">
+                <img src="fb6.jpg" alt="6">
+                <img src="fb7.jpg" alt="7">
+                <img src="fb8.jpg" alt="8">
+                <img src="fb9.jpg" alt="9">
+            </div>
+
+            <a href="fanbu.html" class="more-btn">MORE / 查看完整现场照片 →</a>
+        </div>
+
+        <!-- 节点示例 2 -->
+        <div class="event-card">
+            <div class="event-header">
+                <span class="event-date">26.5.21</span>
+                <span class="event-title">性格缺失</span>
+            </div>
+            
+            <div class="photo-grid">
+                <img src="xg1.jpg" alt="1">
+                <img src="xg2.jpg" alt="2">
+                <img src="xg3.jpg" alt="3">
+                <img src="xg4.jpg" alt="4">
+                <img src="xg5.jpg" alt="5">
+                <img src="xg6.jpg" alt="6">
+                <img src="xg7.jpg" alt="7">
+                <img src="xg8.jpg" alt="8">
+                <img src="xg9.jpg" alt="9">
+            </div>
+
+            <a href="xingque.html" class="more-btn">MORE / 查看完整现场照片 →</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
         }
 
         /* 时间轴圆点 */

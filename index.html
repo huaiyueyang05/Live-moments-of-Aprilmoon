@@ -3,37 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>live又滚了 - 演出时间轴</title>
+    <title>live又滚了 - 时间轴</title>
     <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 0 15px; }
-        h1 { border-bottom: 2px solid #333; padding-bottom: 10px; }
-        .timeline { list-style: none; padding: 0; }
-        .timeline-item { margin-bottom: 15px; padding-left: 15px; border-left: 2px solid #ccc; }
-        .date { font-weight: bold; color: #666; margin-right: 10px; }
-        a { text-decoration: none; color: #0066cc; font-size: 18px; }
-        a:hover { text-decoration: underline; }
+        /* 黑色背景与基础样式 */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+
+        h1 {
+            font-size: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 12px;
+            color: #fff;
+        }
+
+        /* 时间轴整体容器 */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #333;
+            margin-top: 20px;
+        }
+
+        /* 单个时间轴节点 */
+        .event-card {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        /* 时间轴圆点 */
+        .event-card::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ff2442; /* 小红书同款品牌红点 */
+        }
+
+        .event-header {
+            margin-bottom: 8px;
+        }
+
+        .event-date {
+            font-size: 13px;
+            color: #888;
+            margin-right: 8px;
+        }
+
+        .event-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* 极小九宫格预览 */
+        .grid-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 48px); /* 控制每张缩略图的宽度，可自行调整 */
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .grid-preview img {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: #222;
+        }
+
+        /* 查看更多按钮 */
+        .more-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #aaa;
+            text-decoration: none;
+            border: 1px solid #444;
+            padding: 3px 10px;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .more-link:hover {
+            color: #fff;
+            border-color: #888;
+            background-color: #222;
+        }
     </style>
 </head>
 <body>
-    <h1>live又滚了 现场记录</h1>
-    <ul class="timeline">
-        <li class="timeline-item">
-            <span class="date">2026-05-08</span>
-            <a href="tlp.html">T.L.P.</a>
-        </li>
-        <li class="timeline-item">
-            <span class="date">2026-05-16</span>
-            <a href="fengzi.html">风子巡演</a>
-        </li>
-        <li class="timeline-item">
-            <span class="date">2026-05-21</span>
-            <a href="xingque.html">性格缺失</a>
-        </li>
-        <li class="timeline-item">
-            <span class="date">2026-05-22</span>
-            <a href="dongnan.html">东南不锈钢</a>
-        </li>
-        <li class="timeline-item">
+
+    <h1>live又滚了 演出记录</h1>
+
+    <div class="timeline">
+
+        <!-- 节点 1：帆布小镇 -->
+        <div class="event-card">
+            <div class="event-header">
+                <span class="event-date">26.5.29</span>
+                <span class="event-title">帆布小镇</span>
+            </div>
+            
+            <!-- 九宫格小预览图 (放 9 张小图的链接) -->
+            <div class="grid-preview">
+                <img src="fb1.jpg" alt="1">
+                <img src="fb2.jpg" alt="2">
+                <img src="fb3.jpg" alt="3">
+                <img src="fb4.jpg" alt="4">
+                <img src="fb5.jpg" alt="5">
+                <img src="fb6.jpg" alt="6">
+                <img src="fb7.jpg" alt="7">
+                <img src="fb8.jpg" alt="8">
+                <img src="fb9.jpg" alt="9">
+            </div>
+
+            <!-- 跳转到详情页 -->
+            <a href="fanbu.html" class="more-link">More / 查看更多 →</a>
+        </div>
+
+        <!-- 节点 2：性格缺失 -->
+        <div class="event-card">
+            <div class="event-header">
+                <span class="event-date">26.5.21</span>
+                <span class="event-title">性格缺失</span>
+            </div>
+            
+            <div class="grid-preview">
+                <img src="xg1.jpg" alt="1">
+                <img src="xg2.jpg" alt="2">
+                <img src="xg3.jpg" alt="3">
+                <img src="xg4.jpg" alt="4">
+                <img src="xg5.jpg" alt="5">
+                <img src="xg6.jpg" alt="6">
+                <img src="xg7.jpg" alt="7">
+                <img src="xg8.jpg" alt="8">
+                <img src="xg9.jpg" alt="9">
+            </div>
+
+            <a href="xingque.html" class="more-link">More / 查看更多 →</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
             <span class="date">2026-05-23</span>
             <a href="mimi.html">秘密行动</a>
         </li>

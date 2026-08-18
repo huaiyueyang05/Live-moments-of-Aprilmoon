@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livehouse Moments | 现场摄影手记</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #d1d5db;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- 顶部个人状态栏 -->
+    <header class="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-neutral-900">
+        <div class="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
+            <h1 class="text-white font-medium text-sm tracking-widest uppercase">Live Moments</h1>
+            <span class="text-xs text-neutral-500 font-mono">ARCHIVES</span>
+        </div>
+    </header>
+
+    <!-- 动态流主体 -->
+    <main class="max-w-xl mx-auto px-4 py-8 space-y-12" id="feed-container">
+        <!-- 动态内容将由下方的 JavaScript 自动渲染 -->
+    </main>
+
+    <!-- 全屏灯箱 -->
+    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-50 bg-black/95 hidden flex items-center justify-center p-4 cursor-zoom-out">
+        <img id="lightbox-img" src="" class="max-h-[90vh] max-w-[90vw] object-contain shadow-2xl" alt="Zoomed Photo">
+    </div>
+
+    <!-- 数据与渲染逻辑 -->
+    <script>
+        const momentsData = [
+            {
+                id: 1,
+                band: "野孩子乐队专场：黄河谣",
+                venue: "MAO Livehouse, 北京",
+                date: "2026.05.18",
+                comment: "这场演出的灯光极度克制，大部分时间只有微弱的面光和逆光勾勒轮廓。主唱的木吉他和歌声一出来，全场安静得只能听到快门声。高感全开，噪点虽然重了一些，但反而有一种胶片纪实的粗粝美感。",
+                photos: [
+                    "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1200&q=80"
+                ]
+            },
+            {
+                id: 2,
+                band: "假假條 (Fake Tool) 巡演",
+                venue: "VOX Livehouse, 武汉",
+                date: "2026.04.02",
+                comment: "朋克现场的灯光永远是狂乱的红蓝交错。台下冲场极其凶猛，我的安全成了首要任务。快门速度提到 1/640s 才勉强抓住乐手腾空瞬间，汗水砸在镜头上的感觉，久违了。",
+                photos: [
+                    "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80"
+                ]
+            }
+        ];
+
+        const container = document.getElementById('feed-container');
+
+        function renderFeed() {
+            container.innerHTML = '';
+            momentsData.forEach(item => {
+                let gridClass = 'grid-cols-3';
+                if (item.photos.length === 1) gridClass = 'grid-cols-1 max-w-sm';
+                else if (item.photos.length === 2 || item.photos.length === 4) gridClass = 'grid-cols-2';
+
+                let photosHTML = item.photos.map(url => `
+                    <div class="overflow-hidden rounded bg-neutral-900 aspect-square cursor-zoom-in">
+                        <img src="${url}" loading="lazy" onclick="openLightbox('${url}')" class="w-full h-full object-cover hover:scale-105 transition duration-300" alt="Live Photo">
+                    </div>
+                `).join('');
+
+                const article = document.createElement('article');
+                article.className = "pb-8 border-b border-neutral-900 last:border-0";
+                article.innerHTML = `
+                    <div class="mb-3">
+                        <h2 class="text-white font-medium text-base">${item.band}</h2>
+                        <div class="flex items-center gap-2 text-xs text-neutral-500 mt-1">
+                            <span>${item.venue}</span>
+                            <span>·</span>
+                            <span class="font-mono">${item.date}</span>
+                        </div>
+                    </div>
+                    <p class="text-neutral-300 text-sm leading-relaxed font-light mb-4 whitespace-pre-wrap">${item.comment}</p>
+                    <div class="grid ${gridClass} gap-2">
+                        ${photosHTML}
+                    </div>
+                `;
+                container.appendChild(article);
+            });
+        }
+
+        function openLightbox(url) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = url;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        renderFeed();
+    </script>
+</body>
+</html>

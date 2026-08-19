@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: huaiyueyang05/Live-moments-of-Aprilmoon
+  branch: main 
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "摄影作品"
+    folder: "_posts"
+    create: true
+    fields:
+      - {label: "作品标题", name: "title", widget: "string"}
+      - {label: "拍摄日期", name: "date", widget: "datetime"}
+      - {label: "选择颜色分类", name: "color", widget: "select", options: ["红", "橙", "黄", "绿", "青", "蓝", "紫", "黑白"]}
+      - {label: "上传摄影照片", name: "image", widget: "image"}
+      - {label: "拍摄随笔 / 故事", name: "body", widget: "text"}

@@ -3,129 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio of Aprilmoon - 演出时间轴</title>
+    <title>Portfolio of Aprilmoon</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1a1a1a;
+            --text-main: #d1d1d1;
+            --text-muted: #888888;
+            --border-color: #2a2a2a;
+            --accent-color: #c5a880;
         }
 
         body {
-            background-color: #0d0d0d;
-            color: #e5e5e5;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 24px 16px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
         }
 
         header {
-            padding-bottom: 16px;
-            margin-bottom: 24px;
-            border-bottom: 1px solid #222;
+            text-align: center;
+            padding: 60px 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         h1 {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
             color: #fff;
-            letter-spacing: 0.5px;
+            font-weight: normal;
         }
 
         .subtitle {
-            font-size: 13px;
-            color: #666;
-            margin-top: 4px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
 
-        /* 时间轴线 */
-        .timeline {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid #262626;
-        }
-
-        .event-card {
-            position: relative;
-            margin-bottom: 36px;
-        }
-
-        /* 时间轴红点 */
-        .event-card::before {
-            content: '';
-            position: absolute;
-            left: -26px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #ff2442;
-            box-shadow: 0 0 8px rgba(255, 36, 66, 0.6);
-        }
-
-        .event-header {
+        /* 色彩归档筛选栏 */
+        .color-filter {
             display: flex;
-            align-items: baseline;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 12px;
+            margin-top: 25px;
         }
 
-        .event-date {
-            font-size: 14px;
-            font-weight: 600;
-            color: #ff2442;
-            font-family: monospace;
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
         }
 
-        .event-title {
-            font-size: 17px;
-            font-weight: 600;
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* 主体时间轴容器 */
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* 时间轴卡片 */
+        .post-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .post-title {
+            font-size: 1.1rem;
             color: #fff;
+            margin-bottom: 10px;
         }
 
-        /* 预览照片与页面同宽的三列流式网格 */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 6px;
+        .post-image {
             width: 100%;
-            margin-bottom: 12px;
-        }
-
-        .photo-grid img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            max-height: 500px;
             object-fit: cover;
-            border-radius: 6px;
-            background-color: #1a1a1a;
-            display: block;
-            transition: opacity 0.2s ease;
         }
 
-        .photo-grid img:hover {
-            opacity: 0.85;
+        .post-content {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-line;
         }
 
-        /* More 按钮 */
-        .more-btn {
+        .post-tag {
             display: inline-block;
-            width: 100%;
-            text-align: center;
-            padding: 10px 0;
-            background-color: #181818;
-            color: #aaa;
-            font-size: 13px;
-            text-decoration: none;
-            border-radius: 6px;
-            border: 1px solid #2a2a2a;
-            transition: all 0.2s ease;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            background: #252525;
+            color: var(--accent-color);
+            border-radius: 3px;
+            margin-top: 15px;
         }
 
-        .more-btn:hover {
-            background-color: #252525;
-            color: #fff;
-            border-color: #444;
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
@@ -133,56 +143,97 @@
 
     <header>
         <h1>Portfolio of Aprilmoon</h1>
-        <p class="subtitle">一些livehouse现场记录</p>
+        <div class="subtitle">何处春光</div>
+        
+        <!-- 色彩归档筛选栏：红橙黄绿青蓝紫黑白 -->
+        <div class="color-filter">
+            <button class="filter-btn active" onclick="filterColor('all')">全部</button>
+            <button class="filter-btn" onclick="filterColor('红')">红</button>
+            <button class="filter-btn" onclick="filterColor('橙')">橙</button>
+            <button class="filter-btn" onclick="filterColor('黄')">黄</button>
+            <button class="filter-btn" onclick="filterColor('绿')">绿</button>
+            <button class="filter-btn" onclick="filterColor('青')">青</button>
+            <button class="filter-btn" onclick="filterColor('蓝')">蓝</button>
+            <button class="filter-btn" onclick="filterColor('紫')">紫</button>
+            <button class="filter-btn" onclick="filterColor('黑白')">黑白</button>
+        </div>
     </header>
 
-    <div class="timeline">
-
-        <!-- 节点示例 1 -->
-        <div class="event-card">
-            <div class="event-header">
-                <span class="event-date">26.5.29</span>
-                <span class="event-title">帆布小镇</span>
-            </div>
-            
-            <div class="photo-grid">
-                <img src="img/thumb_fb1.jpg" alt="1">
-                <img src="img/thumb_fb2.jpg" alt="2">
-                <img src="img/thumb_fb3.jpg" alt="3">
-                <img src="img/thumb_fb4.jpg" alt="4">
-                <img src="img/thumb_fb5.jpg" alt="5">
-                <img src="img/thumb_fb6.jpg" alt="6">
-                <img src="img/thumb_fb7.jpg" alt="7">
-                <img src="img/thumb_fb8.jpg" alt="8">
-                <img src="img/thumb_fb9.jpg" alt="9">
-            </div>
-
-            <a href="fanbu.html" class="more-btn">MORE / 查看完整现场照片 →</a>
+    <div class="container" id="timeline-container">
+        <!-- 飞行冠军 (2026-08-09) -->
+        <div class="post-card" data-color="蓝">
+            <div class="post-header"><span>2026-08-09</span><span>乐队现场</span></div>
+            <div class="post-title">飞行冠军专场现场</div>
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1000&q=80" alt="飞行冠军" class="post-image">
+            <div class="post-content">现场的鼓点和灯光撞击在一起，空气中满是夏天热烈的汗水与声浪。</div>
+            <div><span class="post-tag">色系：蓝</span></div>
         </div>
 
-        <!-- 节点示例 2 -->
-        <div class="event-card">
-            <div class="event-header">
-                <span class="event-date">26.5.21</span>
-                <span class="event-title">性格缺失</span>
-            </div>
-            
-            <div class="photo-grid">
-                <img src="img/thumb_xg1.jpg" alt="1">
-                <img src="img/thumb_xg2.jpg" alt="2">
-                <img src="img/thumb_xg3.jpg" alt="3">
-                <img src="img/thumb_xg4.jpg" alt="4">
-                <img src="img/thumb_xg5.jpg" alt="5">
-                <img src="img/thumb_xg6.jpg" alt="6">
-                <img src="img/thumb_xg7.jpg" alt="7">
-                <img src="img/thumb_xg8.jpg" alt="8">
-                <img src="img/thumb_xg9.jpg" alt="9">
-            </div>
-
-            <a href="xingque.html" class="more-btn">MORE / 查看完整现场照片 →</a>
+        <!-- 来福 (2026-07) -->
+        <div class="post-card" data-color="黄">
+            <div class="post-header"><span>2026-07-20</span><span>乐队现场</span></div>
+            <div class="post-title">来福现场记事</div>
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1000&q=80" alt="来福" class="post-image">
+            <div class="post-content">复古的灯光打在乐手身上，颗粒感的画面里流淌着温柔的旋律。</div>
+            <div><span class="post-tag">色系：黄</span></div>
         </div>
 
+        <!-- 花墙 (2026-07) -->
+        <div class="post-card" data-color="紫">
+            <div class="post-header"><span>2026-07-12</span><span>乐队现场</span></div>
+            <div class="post-title">花墙 Live</div>
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80" alt="花墙" class="post-image">
+            <div class="post-content">噪声与美学的交织，在紫调的暗光中格外迷幻。</div>
+            <div><span class="post-tag">色系：紫</span></div>
+        </div>
+
+        <!-- 败犬 (2026-07) -->
+        <div class="post-card" data-color="黑白">
+            <div class="post-header"><span>2026-07-05</span><span>乐队现场</span></div>
+            <div class="post-title">败犬乐队</div>
+            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1000&q=80" alt="败犬" class="post-image">
+            <div class="post-content">纯粹的黑白光影，捕捉情绪最赤裸的瞬间。</div>
+            <div><span class="post-tag">色系：黑白</span></div>
+        </div>
+
+        <!-- 老油条 / 落水泥人 (2026-06) -->
+        <div class="post-card" data-color="红">
+            <div class="post-header"><span>2026-06-18</span><span>乐队现场</span></div>
+            <div class="post-title">老油条 / 落水泥人 联合专场</div>
+            <img src="https://images.unsplash.com/photo-1526478806334-5fd488fcaabc?auto=format&fit=crop&w=1000&q=80" alt="老油条 落水泥人" class="post-image">
+            <div class="post-content">热烈而滚烫的六月现场，炽热的红色调定格了台下的欢呼。</div>
+            <div><span class="post-tag">色系：红</span></div>
+        </div>
+
+        <!-- 帆布小镇 & 秘密行动 (2026-05) -->
+        <div class="post-card" data-color="绿">
+            <div class="post-header"><span>2026-05-15</span><span>乐队现场</span></div>
+            <div class="post-title">帆布小镇 & 秘密行动</div>
+            <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1000&q=80" alt="帆布小镇" class="post-image">
+            <div class="post-content">低低沉沉的贝斯声中，绿色的激光束在空气中切出锋利的线条。</div>
+            <div><span class="post-tag">色系：绿</span></div>
+        </div>
     </div>
 
+    <footer>
+        <p>&copy; 2026 Portfolio of Aprilmoon. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function filterColor(color) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.post-card');
+            cards.forEach(card => {
+                if (color === 'all' || card.getAttribute('data-color') === color) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
